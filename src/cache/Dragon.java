@@ -58,6 +58,7 @@ public class Dragon extends AbstractCacheController {
 			case "E":
 				if (t.getT() == Type.BusRd)
 					cache.update(t.getAddress(), index, "Sc");
+				shared = true;
 				break;
 
 			case "Sc":
@@ -87,6 +88,7 @@ public class Dragon extends AbstractCacheController {
 					cache.update(t.getAddress(), index, "Sm");
 					canProvide = true;
 				}
+				shared = true;
 				break;
 			default:
 				break;
@@ -104,6 +106,7 @@ public class Dragon extends AbstractCacheController {
 				hit++;
 				privateAccess++;
 				cache.update(address, index, "E");
+				break;
 			case "M":
 				hit++;
 				privateAccess++;
@@ -113,6 +116,7 @@ public class Dragon extends AbstractCacheController {
 				hit++;
 				publicAccess++;
 				cache.update(address, index, "Sc");
+				break;
 			case "Sm":
 				hit++;
 				publicAccess++;

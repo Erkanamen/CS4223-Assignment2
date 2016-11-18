@@ -38,13 +38,14 @@ public class Bus {
 	}
 
 	public void nextTick() {
-		if (waitCounter > 0) {
+		if (waitCounter > 1) {
 			waitCounter--;
 			return;
 		} else if (servingId >= 0) {
 			snoopers.get(servingId).unstall(shared);
 			shared = false;
 			servingId = -1;
+			return;
 		}
 
 		Transaction next = transactionQueue.poll();

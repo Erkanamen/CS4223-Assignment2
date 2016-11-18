@@ -41,11 +41,11 @@ public abstract class AbstractCacheController implements CacheController {
 	public void nextTick() {
 		if (done())
 			return;
-		//System.out.println(processor);
 		if (!stalled) {
 			processor.nextTick(this);
 		}
 		if (wrPending) wrWaiting++;
+		//System.out.println(processor);
 	}
 	
 	public boolean done() {

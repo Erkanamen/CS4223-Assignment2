@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
-//import java.util.Scanner;
+import java.util.Scanner;
 
 import bus.Bus;
 import bus.BusConstant;
@@ -53,16 +53,20 @@ public class Coherence {
 		
 		// Main Loop
 		long counterCycle = 0;
-		//Scanner sc = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		while (!checkDone(listC)) {
+			counterCycle++;
+			//System.out.println("Cycle : " + counterCycle);
 			for (CacheController c : listC) {
 				c.nextTick();
 			}
+			//System.out.println(b);
 			b.nextTick();
-			counterCycle++;
-			//if (counterCycle % 1000 == 0) sc.nextLine();
-		}
+			//System.out.println(b);
 
+			//sc.nextLine();
+		}
+		counterCycle--; // Remove last cycle where we just checked that it was finished
 		// Statistics
 		int cont = 0;
 		int publicAccess = 0, privateAccess = 0, wrNumber = 0, wrWaiting = 0;
