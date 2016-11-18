@@ -15,6 +15,8 @@ public class CacheFactory {
 		case "Dragon":
 		case "dragon":
 			return new Dragon(id, file, cacheSize, associativity, blockSize);
+		case "MOESI":
+			return new MOESI(id, file, cacheSize, associativity, blockSize);
 		default:
 			return null;
 		}
