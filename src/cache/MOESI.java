@@ -28,7 +28,7 @@ public class MOESI extends AbstractCacheController {
 			cache.update(unstallAddress, index, unstallState);
 		} else {
 			CacheLine rem = cache.add(unstallAddress, unstallState);
-			if (rem.getState() == "M") { // need to evict
+			if (rem.getState() == "M" || rem.getState() == "O") { // need to evict
 				bus.addTransaction(new Transaction(Type.Evict, id, unstallAddress));
 				unstallAddress = -1;
 				return;
