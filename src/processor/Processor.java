@@ -50,7 +50,7 @@ public class Processor {
 				c.prWr(Integer.parseInt(m.getMessage().substring(2), 16));
 				break;
 			case 2:
-				counter = Integer.parseInt(m.getMessage().substring(2), 16);
+				counter = Integer.parseInt(m.getMessage().substring(2), 16) - 1;
 				break;
 			case 3:
 				done = true;
