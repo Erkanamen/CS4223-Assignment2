@@ -44,7 +44,11 @@ public class Dragon extends AbstractCacheController {
 		}
 		unstallAddress = 0;
 		unstallAction = "";
-		wrPending = false;
+		if (wrPending) {
+			wrWaiting--;
+			wrPending = false;
+		}
+		
 		processor.setStall(false);
 		stalled = false;
 	}

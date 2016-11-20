@@ -36,7 +36,10 @@ public class MESI extends AbstractCacheController {
 		}
 		unstallAddress = 0;
 		unstallAction = "";
-		wrPending = false;
+		if (wrPending) {
+			wrWaiting--;
+			wrPending = false;
+		}
 		processor.setStall(false);
 		stalled = false;
 
