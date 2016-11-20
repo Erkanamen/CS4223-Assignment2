@@ -1,7 +1,7 @@
 package bus;
 
 public class BusConstant {
-	public final int MISS = 99;
+	public final int MISS = 100;
 	public final int EVICTION = 99;
 	public final int UPDATE = 0;
 	public final int BLOCKUPDATE;
@@ -9,7 +9,7 @@ public class BusConstant {
 	public final int WORDSIZE = 4;
 	
 	public BusConstant(int blockUpdate, int blockSize) {
-		BLOCKUPDATE = blockUpdate-1;
+		BLOCKUPDATE = blockUpdate;
 		BLOCKSIZE = blockSize;
 	}
 }
