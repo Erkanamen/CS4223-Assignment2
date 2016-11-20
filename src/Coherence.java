@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,9 +70,11 @@ public class Coherence {
 		// Statistics
 		int cont = 0;
 		int publicAccess = 0, privateAccess = 0, wrNumber = 0, wrWaiting = 0;
+		DecimalFormat df = new DecimalFormat();
+		df.setMaximumFractionDigits(2);
 		System.out.println("--STATISTICS--");
 		for (CacheController c : listC) {
-			System.out.println("Core #" + cont++ + " Miss rate : " + c.missRate());
+			System.out.println("Core #" + cont++ + " Miss rate : " + df.format(c.missRate()));
 			System.out.println("Hit : " + c.getHit() + ", Miss : " + c.getMiss());
 			publicAccess += c.getPublicAccess();
 			privateAccess += c.getPrivateAccess();
@@ -82,7 +85,7 @@ public class Coherence {
 		double pubAccesPercentage = publicAccess * 100. / (publicAccess + privateAccess);
 		System.out.println("Public Access (" + pubAccesPercentage + "%): " + publicAccess);
 		System.out.println("Private Access (" + (100 - pubAccesPercentage) + "%) : " + privateAccess);
-		System.out.println("Avg Write Latency : " + 1. * wrWaiting / wrNumber + " cycles");
+		System.out.println("Avg Write Latency : " + df.format(1. * wrWaiting / wrNumber) + " cycles");
 		b.statistics();
 		System.out.println("Done in " + counterCycle + " cycles");
 	}
