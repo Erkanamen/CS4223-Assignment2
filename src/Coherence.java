@@ -83,8 +83,8 @@ public class Coherence {
 		}
 		System.out.println("Total Statistics :");
 		double pubAccesPercentage = publicAccess * 100. / (publicAccess + privateAccess);
-		System.out.println("Public Access (" + pubAccesPercentage + "%): " + publicAccess);
-		System.out.println("Private Access (" + (100 - pubAccesPercentage) + "%) : " + privateAccess);
+		System.out.println("Public Access (" + df.format(pubAccesPercentage) + "%): " + publicAccess);
+		System.out.println("Private Access (" + df.format(100 - pubAccesPercentage) + "%) : " + privateAccess);
 		System.out.println("Avg Write Latency : " + df.format(1. * wrWaiting / wrNumber) + " cycles");
 		b.statistics();
 		System.out.println("Done in " + counterCycle + " cycles");
