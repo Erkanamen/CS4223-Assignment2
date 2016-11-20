@@ -64,6 +64,10 @@ public class Processor {
 		}
 	}
 	
+	public void close() {
+		trace.close();
+	}
+	
 	@Override
 	public String toString() {
 		return "Core #" + id + " is stalled : " + stall + ", line :" + instructionCounter + ", remaining : " + counter;

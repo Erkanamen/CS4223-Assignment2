@@ -18,6 +18,7 @@ public interface CacheController {
 	// Processor context
 	public void prRd(int address);
 	public void prWr(int address);
+	public void close();
 	
 	// Statistics
 	public double missRate();

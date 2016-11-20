@@ -95,4 +95,8 @@ public abstract class AbstractCacheController implements CacheController {
 	public int getwrWaiting() {
 		return wrWaiting;
 	}
+	
+	public void close() {
+		processor.close();
+	}
 }

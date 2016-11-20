@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import bus.Bus;
 import bus.BusConstant;
@@ -18,13 +17,13 @@ public class Coherence {
 		int blockSize = BLOCK_SIZE;
 		int cacheSize = CACHE_SIZE;
 		int associativity = ASSOCIATIVITY;
-		
+
 		// Parsing
 		if (!(args.length == 2 || args.length == 5)) {
 			System.err.println("Incorrect number of arguments : " + args.length);
 			System.exit(-1);
 		}
-		
+
 		String protocol = args[0];
 		String inputFile = args[1];
 		if (args.length > 2) {
@@ -32,12 +31,13 @@ public class Coherence {
 			associativity = Integer.parseInt(args[3]);
 			blockSize = Integer.parseInt(args[4]);
 		}
-		
+
 		// Configuration
 		System.out.println("--CONFIG--");
 		System.out.println(protocol + " on " + inputFile);
-		System.out.println("Caches : " + cacheSize + " allowed bytes, associativity : " + associativity + ", block size : " + blockSize);
-		
+		System.out.println("Caches : " + cacheSize + " allowed bytes, associativity : " + associativity
+				+ ", block size : " + blockSize);
+
 		List<CacheController> listC = new ArrayList<>();
 		try {
 			for (int i = 0; i < 4; ++i) {
@@ -50,23 +50,22 @@ public class Coherence {
 		}
 		Bus b = new Bus(listC, new BusConstant(blockSize / wordSize, blockSize));
 
-		
 		// Main Loop
 		long counterCycle = 0;
-		Scanner sc = new Scanner(System.in);
 		while (!checkDone(listC)) {
 			counterCycle++;
-			//System.out.println("Cycle : " + counterCycle);
 			for (CacheController c : listC) {
 				c.nextTick();
 			}
-			//System.out.println(b);
 			b.nextTick();
-			//System.out.println(b);
-
-			//sc.nextLine();
 		}
-		counterCycle--; // Remove last cycle where we just checked that it was finished
+
+		// Close all
+		for (CacheController c : listC) {
+			c.close();
+		}
+		counterCycle--; // Remove last cycle where we just checked that it was
+						// finished
 		// Statistics
 		int cont = 0;
 		int publicAccess = 0, privateAccess = 0, wrNumber = 0, wrWaiting = 0;
